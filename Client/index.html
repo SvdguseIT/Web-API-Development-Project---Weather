@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Lanka Weather Map</title>
+    <!-- Include Leaflet.js library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        #map { width: 100%; height: 500px; } /* Adjust map height as needed */
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+        // Initialize the map with Sri Lanka as the center
+        var map = L.map('map').setView([7.8731, 80.7718], 8);
+
+        // Add the base map layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Function to add markers for weather stations
+        function addWeatherStations() {
+            // Sample weather stations data (latitude, longitude, district, temperature, humidity, air pressure)
+            var weatherStations = [
+                [6.9271, 79.8612, 'Colombo', 25, 80, 1010],
+                [7.8731, 80.7718, 'Kandy', 22, 85, 1005],
+                [6.0535, 80.2202, 'Galle', 28, 75, 1015],
+                [9.6615, 80.0255, 'Trincomalee', 26, 78, 1012],
+                [8.5756, 81.2152, 'Jaffna', 24, 82, 1008],
+                // Add more weather stations as needed
+                [6.2950, 80.6504, 'Kalutara', 27, 76, 1013],
+                [7.9804, 80.6956, 'Matale', 21, 88, 1002],
+                [7.2964, 80.6350, 'Nuwara Eliya', 18, 90, 995],
+                [6.4211, 80.5767, 'Gampaha', 26, 79, 1011],
+                [7.5560, 80.3774, 'Kegalle', 23, 83, 1007],
+                [6.9214, 81.1070, 'Matara', 29, 74, 1016],
+                [6.6930, 81.4926, 'Hambantota', 31, 70, 1018],
+                [7.4958, 81.0288, 'Badulla', 20, 86, 1001],
+                [6.1340, 80.0998, 'Puttalam', 28, 75, 1014],
+                [9.3977, 80.4037, 'Batticaloa', 25, 80, 1010],
+                [8.5810, 81.2156, 'Vavuniya', 23, 83, 1007],
+                [8.5671, 81.2330, 'Mannar', 24, 82, 1008],
+                [7.9939, 81.0458, 'Anuradhapura', 26, 78, 1012],
+                [6.7970, 81.4808, 'Tangalle', 30, 72, 1017],
+                [8.0447, 79.6630, 'Kilinochchi', 22, 85, 1005],
+                [8.7500, 80.5000, 'Polonnaruwa', 25, 80, 1010],
+                [8.9500, 79.7333, 'Mullaitivu', 23, 83, 1007],
+                [6.7167, 81.8333, 'Moneragala', 32, 68, 1019],
+                [9.6647, 80.0057, 'Ampara', 27, 76, 1013],
+                [6.2850, 81.0750, 'Kurunegala', 24, 82, 1008],
+                [7.2906, 80.6337, 'Nuwara Eliya', 18, 90, 995]
+            ];
+
+            // Loop through weather stations data and add markers to the map
+            weatherStations.forEach(station => {
+                var marker = L.marker([station[0], station[1]]).addTo(map);
+                marker.bindPopup(`
+                    <b>${station[2]}</b><br>
+                    Temperature: ${station[3]}°C<br>
+                    Humidity: ${station[4]}%<br>
+                    Air Pressure: ${station[5]} hPa
+                `);
+            });
+        }
+
+        // Call the function to add weather stations
+        addWeatherStations();
+    </script>
+</body>
+</html>

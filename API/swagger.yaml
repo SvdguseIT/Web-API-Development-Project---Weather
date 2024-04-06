@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: Sri Lanka Weather API
+  description: API to retrieve weather data for different districts in Sri Lanka.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /api/weather:
+    post:
+      summary: Insert weather data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                district:
+                  type: string
+                temperature:
+                  type: number
+                humidity:
+                  type: integer
+                air_pressure:
+                  type: integer
+              required:
+                - district
+                - temperature
+                - humidity
+                - air_pressure
+      responses:
+        '200':
+          description: Weather data inserted successfully
+        '500':
+          description: Internal Server Error
+    get:
+      summary: Get latest weather data for all districts
+      responses:
+        '200':
+          description: Weather data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    district:
+                      type: string
+                    temperature:
+                      type: number
+                    humidity:
+                      type: integer
+                    air_pressure:
+                      type: integer
+        '500':
+          description: Internal Server Error
