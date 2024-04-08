@@ -4,17 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sri Lanka Weather Map</title>
+    <!-- Weather Map -->
     <!-- Include Leaflet.js library -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <style>
-        #map { width: 100%; height: 500px; } /* Adjust map height as needed */
+        #map { 
+            width: 100%; 
+            height: calc(100vh - 40px); /* Adjust map height as needed */
+            position: relative; /* Make map container relative for absolute positioning of elements */
+        }
+
+        /* Title style */
+        .title {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Update time style */
+        .update-time {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
+    <div class="title">Sri Lanka Weather Map</div>
+    <div class="update-time" id="updateTime"></div>
     <div id="map"></div>
 
     <script>
+        // Function to update the time every 5 minutes
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
+            var formattedTime = hours + ':' + minutes + ':' + seconds;
+            document.getElementById('updateTime').textContent = 'Last updated: ' + formattedTime;
+        }
+
+        // Call updateTime initially to set the time immediately
+        updateTime();
+
+        // Update time every 5 minutes
+        setInterval(updateTime, 5 * 60 * 1000);
+
         // Initialize the map with Sri Lanka as the center
         var map = L.map('map').setView([7.8731, 80.7718], 8);
 

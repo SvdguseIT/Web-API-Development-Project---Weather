@@ -35,3 +35,4 @@ function updateWeatherData(district, temperature, humidity, airPressure) {
 updateWeatherData('Colombo', 25, 80, 1010);
 updateWeatherData('Kandy', 22, 85, 1005);
 // Add more districts and weather data as needed
+
