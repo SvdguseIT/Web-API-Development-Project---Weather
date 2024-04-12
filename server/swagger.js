@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:5500', // Update this with your backend server URL
+        url: 'http://localhost:8888', // Update this with your backend server URL
       },
     ],
   },

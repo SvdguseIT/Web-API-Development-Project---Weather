@@ -10,7 +10,7 @@ const userRoutes = require('./routes/userRoutes');
 app.use(express.json());
 
 // Serve static files from the 'client/build' directory
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.use(express.static(path.join( 'client', 'build')));
 
 // Define routes for weather data and user management
 app.use('/api/weather', weatherRoutes);
@@ -18,10 +18,10 @@ app.use('/api/user', userRoutes);
 
 // Route to serve the React app
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  res.sendFile(path.join( 'client', 'build', 'index.html'));
 });
 
 // Start the server
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT || 8888;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
